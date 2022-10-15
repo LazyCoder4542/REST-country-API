@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --DarkModeElements: hsl(209, 23%, 22%);
+  --DarkModeBackground: hsl(207, 26%, 17%);
+  --DarkModeText_LightModeElements: hsl(0, 0%, 100%);
+  --LightModeText: hsl(200, 15%, 8%);
+  --LightModeInput: hsl(0, 0%, 52%);
+  --LightModeBackground: hsl(0, 0%, 98%);
+}
+
+body {
+  background-color: var(--DarkModeBackground);
+  color: var(--DarkModeText_LightModeElements);
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.heading-section {
+  background-color: var(--DarkModeElements);
+  padding: 1rem 3rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2rem 3rem;
+}
+
+.search,
+.continents {
+  background-color: var(--DarkModeElements);
+  color: var(--DarkModeText_LightModeElements);
+
+  padding: 10px;
+  font-size: 12px;
+
+  border: none;
+  border-radius: 5px;
+}
+
+.search {
+  width: 25%;
+}
+
+.continents {
+  width: 12%;
+}
+
+.country-cards_container {
+  width: 100%;
+  padding: 3rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--DarkModeElements);
+  width: 17rem;
+  height: auto;
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 160px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  width: 100%;
+  padding: 20px;
+}
+
+.card-content h3 {
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.hidden {
+  display: none;
+}
