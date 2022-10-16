@@ -2,7 +2,7 @@
 
 let searchField = document.querySelector('.search');
 
-//Rendering the card function
+//Card Render Function
 function renderCard(country) {
   document.querySelector('.country-cards_container').innerHTML += `
   <div class="card">
@@ -38,6 +38,16 @@ fetch('https://restcountries.com/v3.1/all')
 
       renderCard(country);
     });
+
+    //Filter Card on Search Function
+    function filterCard() {
+      const searchFieldVal = searchField.value;
+
+      allCountryName.forEach(countryName => {
+        if (countryName.toLowerCase().includes(searchFieldVal.toLowerCase()))
+          renderCard();
+      });
+    }
 
     //Event Listerer for the search input
     searchField.addEventListener('keyup', filterCard);
