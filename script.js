@@ -1,15 +1,22 @@
 'use strict';
 
 const searchField = document.querySelector('.search');
-const searchFieldValue = searchField.value;
 
-let countryName;
+let allCountryName = [];
+let filterCard;
+//Fetching REST API and rendering the country cards
 fetch('https://restcountries.com/v3.1/all')
   .then(response => response.json())
   .then(countries => {
     countries.forEach(country => {
-      console.log(country);
-      countryName = country.name.common;
+      allCountryName.push(country.name.common);
+      console.log(allCountryName);
+
+      filterCard = function () {
+        const searchFieldValue = searchField.value;
+        console.log(searchFieldValue);
+      };
+
       document.querySelector('.country-cards_container').innerHTML += `
         <div class="card">
           <div class='card-image'>
@@ -35,5 +42,5 @@ fetch('https://restcountries.com/v3.1/all')
     });
   });
 
-const filterCard = function () {};
-searchField.addEventListener('input', filterCard);
+searchField.addEventListener('keyup', filterCard);
+console.log(allCountryName);
