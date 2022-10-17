@@ -38,6 +38,7 @@ function renderCard({
 //Filter Card on Search Function
 function filterCard() {
   const searchFieldVal = searchField.value;
+  document.querySelector('.country-cards_container').innerHTML = null;
 
   allCountryData.forEach(countryData => {
     if (
@@ -45,8 +46,10 @@ function filterCard() {
         .toLowerCase()
         .includes(searchFieldVal.toLowerCase())
     )
-      renderCard(countryData);
-  });
+      {
+        renderCard(countryData);
+      }
+    });
 }
 
 //Fetching REST API and rendering the country cards
