@@ -1,54 +1,66 @@
 'use strict';
 
-let searchField = document.querySelector('.search');
+const searchField = document.querySelector('.search');
+let allCountryData = [];
 
 //Card Render Function
-function renderCard(country) {
+function renderCard({
+  flags: { svg },
+  name: { common },
+  population,
+  region,
+  capital,
+}) {
   document.querySelector('.country-cards_container').innerHTML += `
   <div class="card">
     <div class='card-image'>
       <img
-        src= ${country.flags.svg}
-        lt='${"The country's Flag"}'
+        src= ${svg}
+        alt='${"The country's Flag"}'
       />
     </div>
     <div class="card-content">
-      <h3 class="country-name">${country.name.common}</h3>
+      <h3 class="country-name">${common}</h3>
       <p>Population: 
-        <span class="population">${country.population}</span>
+        <span class="population">${population}</span>
       </p>
       <p>Region: 
-        <span class="region">${country.region}</span>
+        <span class="region">${region}</span>
       </p>
       <p>Capital: 
-        <span class="capital">${country.capital}</span>
+        <span class="capital">${capital}</span>
       </p>
     </div>
   </div>
 `;
 }
 
-let allCountryName = [];
+//Filter Card on Search Function
+function filterCard() {
+  const searchFieldVal = searchField.value;
+
+  allCountryData.forEach(countryData => {
+    if (
+      countryData.name.common
+        .toLowerCase()
+        .includes(searchFieldVal.toLowerCase())
+    )
+      renderCard(countryData);
+  });
+}
+
 //Fetching REST API and rendering the country cards
 fetch('https://restcountries.com/v3.1/all')
   .then(response => response.json())
   .then(countries => {
     countries.forEach(country => {
-      allCountryName.push(country.name.common);
-
+      allCountryData.push(country);
       renderCard(country);
     });
-
-    //Filter Card on Search Function
-    function filterCard() {
-      const searchFieldVal = searchField.value;
-
-      allCountryName.forEach(countryName => {
-        if (countryName.toLowerCase().includes(searchFieldVal.toLowerCase()))
-          renderCard();
-      });
-    }
-
-    //Event Listerer for the search input
-    searchField.addEventListener('keyup', filterCard);
   });
+
+//Search inputs needs the fully loaded data
+window.addEventListener('load', function () {
+  console.log(allCountryData);
+  searchField.addEventListener('keyup', filterCard);
+});
